@@ -17,14 +17,13 @@ public class RSA {
 
 
 	// For Encryption
-	public RSA(int p, int q){
-		this.p = p;
-		this.q = q;
-		n = p * q;
+	public RSA(int n, int e){
+		this.n = n;
+		factorize(n);
 
 		// Least common multiple
 		int lcm = lcm(this.p, this.q);
-		e = calculateE(lcm);
+		this.e = e;
 		d = calculateD(e, lcm);
 
 	}
@@ -35,8 +34,8 @@ public class RSA {
 
 		// Least common multiple
 		int lcm = lcm(this.p, this.q);
-		e = calculateE(lcm);
-		d = calculateD(e, lcm);
+		this.e = calculateE(lcm);
+		this.d = calculateD(this.e, lcm);
 	}
 
 	public int getP(){
